@@ -16,7 +16,8 @@ RUN \
     apt-get install -y docker-engine && \
     apt-get autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    usermod -aG docker jenkins
 
 WORKDIR /opt/jenkins-slave-setup
 
