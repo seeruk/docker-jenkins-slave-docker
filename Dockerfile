@@ -1,6 +1,8 @@
 FROM seeruk/jenkins-slave:latest
 MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
+COPY provisioning/00-docker-group.sh /opt/jenkins-slave-setup/provisioning/00-docker-group.sh
+
 ENV DOCKER_VERSION 1.12
 ENV DOCKER_COMPOSE_VERSION 1.8.0
 
@@ -14,11 +16,10 @@ RUN set -x \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
-    && chmod +x /usr/local/bin/docker-compose
+    && chmod +x /usr/local/bin/docker-compose \
+    && chmod +x /opt/jenkins-slave-setup/provisioning/00-docker-group.sh
 
 WORKDIR /opt/jenkins-slave-setup
-
-# && usermod -aG docker jenkins \
 
 ENTRYPOINT ["/opt/jenkins-slave-setup/docker-entrypoint.sh"]
 
