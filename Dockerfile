@@ -13,11 +13,12 @@ RUN set -x \
     && apt-get autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && usermod -aG docker jenkins \
     && curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
 WORKDIR /opt/jenkins-slave-setup
+
+# && usermod -aG docker jenkins \
 
 ENTRYPOINT ["/opt/jenkins-slave-setup/docker-entrypoint.sh"]
 
