@@ -3,8 +3,8 @@ MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
 COPY provisioning/00-docker-group.sh /opt/jenkins-slave-setup/provisioning/00-docker-group.sh
 
-ENV DOCKER_VERSION 1.12
-ENV DOCKER_COMPOSE_VERSION 1.8.0
+ENV DOCKER_VERSION 17.05
+ENV DOCKER_COMPOSE_VERSION 1.15.0
 
 RUN set -x \
     && apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys \
